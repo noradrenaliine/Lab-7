@@ -1,0 +1,69 @@
+import RPi.GPIO as GPIO
+import time
+
+GPIO.setup(servo_pin, GPIO.OUT)
+pwm = GPIO.PWM(servo_pin, 50)
+pwm.start(0)
+
+#create function to read + parse g-code files
+def read_gcode_file():
+'''
+    (input)filename to be read
+        read file
+    (return)
+        gcode_lines, list
+'''
+    # Initialize an empty list to store file lines
+    gcode_lines = []
+
+    # Open the G-code file for reading
+    with open(circle.gcode, 'r') as file:
+        for line in file:
+            gcode_lines.append(line.strip())
+    return gcode_lines
+
+def parse_gcode():
+'''
+    (input)gcode_lines file
+        parse each line of g-code to extract the comand peramiters 
+    (return)
+        usable g-code that can be sent to servo_translator.py, list
+'''
+    usable_gcode = []
+    for line in gcode_lines:
+        command, parameters = parse_gcode_line(line)
+        usable_gcode.append((command, parameters))
+    return parsed_commands
+
+#interpret g-code with servo translator 
+def interpret_gcode():
+'''
+    (input) list parsed g-code
+        convert to safe pwm duty cucles using servo_translator.py
+    (return)
+        converted duty cycles
+'''
+
+#send pwm signal dfrom the translator to the servos
+def run_servo ():
+'''
+    (input)converted duty cycles for use by the servos
+        run code on servos
+    (return)
+        none
+'''
+
+def mainfunction():
+'''
+    read_gcode
+    parse_gcode
+    interpret_gcode
+    send_gcode
+'''
+#get filename from user
+
+    gcode_lines = read_gcode_file (circle.gcode)
+
+    parsed_commands = parse_gcode(gcode_lines)
+
+    converted_duty_cycles = interpret_gcode(usable_gcode_command)
